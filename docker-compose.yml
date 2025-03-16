@@ -10,7 +10,7 @@ services:
     volumes:
       - .:/app
       - /app/node_modules  # Prevents issues with dependencies
-    command: ["npm", "run", "dev"]
+    entrypoint: ["npm", "run", "dev"]
 
   prod:
     build:
