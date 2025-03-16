@@ -19,5 +19,5 @@ services:
       target: production
     container_name: my-app-prod
     ports:
-      - "100:80"
+      - "4173:4173"
     restart: always
