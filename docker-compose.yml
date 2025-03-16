@@ -1,3 +1,23 @@
-name: mabilisang-portfolio
+name: "mabilisang-portfolio"
 
 services:
+  dev:
+    build:
+      context: .
+      target: development
+    container_name: my-app-dev
+    ports:
+      - "5173:5173"  # Adjust if using a different port
+    volumes:
+      - .:/app
+      - /app/node_modules  # Prevents issues with dependencies
+    command: ["npm", "run", "dev"]
+
+  prod:
+    build:
+      context: .
+      target: production
+    container_name: my-app-prod
+    ports:
+      - "80:80"
+    restart: always
