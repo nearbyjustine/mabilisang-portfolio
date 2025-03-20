@@ -7,7 +7,7 @@ import SizeWidget from "./utility_components/SizeWidget.tsx";
 // biome-ignore lint/style/noNonNullAssertion: <explanation>
 createRoot(document.getElementById("root")!).render(
 	<StrictMode>
-		<SizeWidget />
+		{/* <SizeWidget /> */}
 		<App />
 	</StrictMode>,
 );
