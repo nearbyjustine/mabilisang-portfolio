@@ -1,6 +1,9 @@
 function Hero() {
 	return (
-		<div className="w-full md:flex-row md:gap-0 gap-8 flex-col-reverse flex justify-between 2xl:px-20 2xl:pt-20 px-10 pt-10 items-center ">
+		<div
+			id="hero"
+			className="w-full md:flex-row md:gap-0 gap-8 flex-col-reverse flex justify-between 2xl:px-20 2xl:pt-20 px-10 pt-10 items-center "
+		>
 			<div className="text-slate-900 md:space-y-8 space-y-4 md:w-1/2 ">
 				<div className="md:space-y-2">
 					<h1 className="xl:text-6xl md:text-4xl text-2xl">
