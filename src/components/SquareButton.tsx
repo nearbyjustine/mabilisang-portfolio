@@ -19,10 +19,10 @@ function SquareButton(props: SquareButtonProps) {
 		<Button
 			className={cn(
 				props.className,
-				"border-black border rounded-sm bg-white group hover:bg-black transition-colors w-10 h-10 md:w-14 md:h-14 cursor-pointer",
+				"border-black border rounded-sm bg-white group hover:bg-black focus:bg-black transition-colors w-10 h-10 md:w-14 md:h-14 cursor-pointer",
 			)}
 		>
-			<props.icon className="group-hover:fill-white fill-black transition-colors md:scale-150" />
+			<props.icon className="group-hover:fill-white group-focus:fill-white fill-black transition-colors md:scale-150" />
 		</Button>
 	);
 }
