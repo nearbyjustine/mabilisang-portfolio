@@ -1,7 +1,7 @@
 import { GiHamburgerMenu } from "react-icons/gi";
 import DownloadButton from "../components/DownloadButton";
 import { cn } from "@/lib/utils";
-import type { NavbarProps } from "@/types/navbar";
+import type { NavbarProps } from "@/types/props";
 
 function Navbar(props: NavbarProps) {
 	return (
