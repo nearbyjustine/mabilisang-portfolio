@@ -14,3 +14,12 @@ export type CardProps = {
 	workSetup: string;
 	companyWebsite: string;
 };
+
+export type ProjectProps = {
+	id: number;
+	imgSrc: string;
+	imgAlt: string;
+	link: string;
+	title: string;
+	description: string;
+};
