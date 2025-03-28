@@ -1,6 +1,6 @@
 function Hero() {
 	return (
-		<div
+		<main
 			id="hero"
 			className="w-full md:flex-row md:gap-0 gap-8 flex-col-reverse flex justify-between 2xl:px-20 2xl:pt-20 px-10 pt-10 items-center"
 		>
@@ -30,7 +30,7 @@ function Hero() {
 					alt="Child thinking, creative"
 				/>
 			</div>
-		</div>
+		</main>
 	);
 }
 
