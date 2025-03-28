@@ -6,12 +6,12 @@ function Project(props: ProjectProps) {
 	return (
 		<div
 			className={cn(
-				"flex flex-col  gap-8 md:gap-16",
-				props.id % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse",
+				"flex flex-col  gap-8 md:gap-16 items-center",
+				props.id % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse",
 			)}
 		>
-			<div className="md:w-1/2 w-fit h-fit flex justify-center">
-				<div className="md:w-[500px] w-fit h-fit group bg-contain overflow-hidden rounded-2xl shadow-xl transition-all duration-500 shadow-slate-700">
+			<div className="lg:w-1/2 w-fit h-fit flex justify-center">
+				<div className="md:w-[500px] lg:w-[450px] xl:w-[500px] w-fit h-fit group bg-contain overflow-hidden rounded-2xl shadow-xl transition-all duration-500 shadow-slate-700">
 					<a href={props.link} target="_blank" rel="noreferrer">
 						<img
 							className="bg-contain transition-transform group-hover:scale-105 duration-500 saturate-0"
