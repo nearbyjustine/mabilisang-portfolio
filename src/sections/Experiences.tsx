@@ -1,5 +1,4 @@
 import Card from "@/components/Card";
-import { cn } from "@/lib/utils";
 import type { CardProps } from "@/types/props";
 
 const experiences: CardProps[] = [
@@ -27,16 +26,19 @@ const experiences: CardProps[] = [
 	},
 ];
 
-function Experiences({ className }: { className: string }) {
+function Experiences() {
 	return (
-		<div id="experience" className={cn(className, "bg-slate-950 text-white")}>
+		<section
+			id="experiences"
+			className="flex flex-col justify-between 2xl:px-20 2xl:py-20 px-10 py-10 items-center md:gap-8 gap-4 bg-slate-950 text-white"
+		>
 			<h1 className="md:text-4xl text-2xl">Work Experience</h1>
 			<div className="flex flex-col gap-4">
 				{experiences.map((experience) => (
 					<Card key={experience.id} {...experience} />
 				))}
 			</div>
-		</div>
+		</section>
 	);
 }
 
