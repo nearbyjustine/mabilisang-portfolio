@@ -14,6 +14,8 @@ import {
 	PopoverContent,
 	PopoverTrigger,
 } from "@/components/ui/popover";
+import ContactForm from "./components/ContactForm";
+import Footer from "./sections/Footer";
 
 function App() {
 	const [burgerClicked, setBurgerClicked] = useState(false);
@@ -59,13 +61,10 @@ function App() {
 								icon={FaGithub}
 							/>
 							<Popover>
-								<PopoverTrigger>
-									{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
-									<div
-										onClick={() => copyToClipboard("nearbyjustine@gmail.com")}
-									>
-										<SquareButton icon={SiGmail} />
-									</div>
+								<PopoverTrigger
+									onClick={() => copyToClipboard("nearbyjustine@gmail.com")}
+								>
+									<SquareButton icon={SiGmail} />
 								</PopoverTrigger>
 								<PopoverContent sideOffset={12}>
 									Copied email to clipboard
@@ -74,10 +73,23 @@ function App() {
 						</div>
 						<div className="md:block md:h-1 h-0.5 bg-black w-full md:ml-[120px] ml-5 -mt-1 sm:mt-0" />
 					</section>
+					<Experiences />
+					<AboutMe />
+					<Projects />
+					<section
+						id="contact"
+						className="2xl:px-20 px-10 2xl:py-20 py-20 flex flex-col gap-8 items-center"
+					>
+						<div className="flex-col flex justify-center">
+							<h1 className="md:text-4xl text-2xl">Let's talk! 🥳</h1>
+							<p className="md:text-base text-small text-slate-800">
+								If you want me to build something for you.
+							</p>
+						</div>
+						<ContactForm className="md:w-[500px] w-full" />
+					</section>
+					<Footer />
 				</div>
-				<Experiences />
-				<AboutMe />
-				<Projects />
 			</div>
 		</>
 	);
