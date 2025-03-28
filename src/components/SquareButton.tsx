@@ -17,28 +17,27 @@ type SquareButtonProps = {
 function SquareButton(props: SquareButtonProps) {
 	if (props.link) {
 		return (
-			<Button
-				asChild
+			<div
 				className={cn(
 					props.className,
-					"border-black border rounded-sm bg-white group hover:bg-black focus:bg-black transition-colors w-10 h-10 md:w-14 md:h-14 cursor-pointer",
+					"border-black border rounded-sm bg-white group hover:bg-black focus:bg-black transition-colors w-10 h-10 md:w-14 md:h-14 cursor-pointer items-center flex justify-center",
 				)}
 			>
 				<a target="_blank" rel="noreferrer" href={props.link}>
 					<props.icon className="group-hover:fill-white group-focus:fill-white fill-black transition-colors md:scale-150" />
 				</a>
-			</Button>
+			</div>
 		);
 	}
 	return (
-		<Button
+		<div
 			className={cn(
 				props.className,
-				"border-black border rounded-sm bg-white group hover:bg-black focus:bg-black transition-colors w-10 h-10 md:w-14 md:h-14 cursor-pointer",
+				"border-black border rounded-sm bg-white group hover:bg-black focus:bg-black transition-colors w-10 h-10 md:w-14 md:h-14 cursor-pointer items-center flex justify-center",
 			)}
 		>
 			<props.icon className="group-hover:fill-white group-focus:fill-white fill-black transition-colors md:scale-150" />
-		</Button>
+		</div>
 	);
 }
 
