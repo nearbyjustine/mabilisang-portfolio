@@ -32,31 +32,47 @@ function BurgerNavbar({
 				</div>
 			</div>
 			<div className="flex-1 flex flex-col gap-6 items-center justify-center text-white">
-				<a
-					className="py-2 px-3 rounded-lg hover:bg-slate-800 focus:bg-slate-800 transition-all"
-					href="#experiences"
-				>
-					Experience
-				</a>
-				<a
-					className="py-2 px-3 rounded-lg hover:bg-slate-800 focus:bg-slate-800 transition-all"
-					href="#me"
-				>
-					About Me
-				</a>
-				<a
-					className="py-2 px-3 rounded-lg border-b-0 hover:bg-slate-800 focus:bg-slate-800 transition-all"
-					href="#projects"
-				>
-					Projects
-				</a>
-				<a
-					className="py-2 px-3 rounded-lg hover:bg-slate-800 focus:bg-slate-800 transition-all"
-					href="#contact"
-				>
-					Contact Me
-				</a>
-				<DownloadButton link="justine_castaneda_resume.pdf" text="Resume" />
+				{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+				<div onClick={() => setBurgerClicked((prev) => !prev)}>
+					{" "}
+					<a
+						className="py-2 px-3 rounded-lg hover:bg-slate-800 focus:bg-slate-800 transition-all"
+						href="#experiences"
+					>
+						Experience
+					</a>
+				</div>
+				{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+				<div onClick={() => setBurgerClicked((prev) => !prev)}>
+					<a
+						className="py-2 px-3 rounded-lg hover:bg-slate-800 focus:bg-slate-800 transition-all"
+						href="#me"
+					>
+						About Me
+					</a>
+				</div>
+				{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+				<div onClick={() => setBurgerClicked((prev) => !prev)}>
+					<a
+						className="py-2 px-3 rounded-lg border-b-0 hover:bg-slate-800 focus:bg-slate-800 transition-all"
+						href="#projects"
+					>
+						Projects
+					</a>
+				</div>
+				{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+				<div onClick={() => setBurgerClicked((prev) => !prev)}>
+					<a
+						className="py-2 px-3 rounded-lg hover:bg-slate-800 focus:bg-slate-800 transition-all"
+						href="#contact"
+					>
+						Contact Me
+					</a>
+				</div>
+				{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
+				<div onClick={() => setBurgerClicked((prev) => !prev)}>
+					<DownloadButton link="justine_castaneda_resume.pdf" text="Resume" />
+				</div>
 			</div>
 		</nav>
 	);
