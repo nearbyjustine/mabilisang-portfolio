@@ -5,7 +5,7 @@ import type { NavbarProps } from "@/types/props";
 
 function Navbar(props: NavbarProps) {
 	return (
-		<div
+		<nav
 			className={cn(
 				"flex justify-between 2xl:px-20 px-10 py-4 items-center bg-white",
 			)}
@@ -39,7 +39,7 @@ function Navbar(props: NavbarProps) {
 			<div className="md:block hidden">
 				<DownloadButton link="justine_castaneda_resume.pdf" text="Resume" />
 			</div>
-		</div>
+		</nav>
 	);
 }
 

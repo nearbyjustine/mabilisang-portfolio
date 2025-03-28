@@ -9,7 +9,7 @@ function BurgerNavbar({
 	inMobileView,
 }: NavbarProps) {
 	return (
-		<div
+		<nav
 			className={cn(
 				"absolute w-full min-h-screen bg-slate-950 top-0",
 				burgerClicked && inMobileView ? "flex flex-col" : "hidden",
@@ -58,7 +58,7 @@ function BurgerNavbar({
 				</a>
 				<DownloadButton link="justine_castaneda_resume.pdf" text="Resume" />
 			</div>
-		</div>
+		</nav>
 	);
 }
 
