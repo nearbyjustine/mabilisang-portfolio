@@ -44,7 +44,7 @@ function Projects() {
 	return (
 		<section
 			id="projects"
-			className="flex flex-col justify-between 2xl:px-20 2xl:py-20 px-10 py-10 items-center md:gap-16 gap-8 bg-slate-950 text-white"
+			className="flex flex-col justify-between 2xl:px-20 2xl:py-20 pb-20 px-10 py-10 items-center md:gap-16 gap-8 bg-slate-950 text-white"
 		>
 			<h1 className="md:text-4xl text-2xl">My Projects</h1>
 			{projectList.map((project) => (
