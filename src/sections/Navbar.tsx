@@ -11,14 +11,23 @@ function Navbar(props: NavbarProps) {
 			)}
 		>
 			<div>
-				<img src="hows-tine-logo.svg" alt="hows.tine logo" width={40} />
+				<a href="/">
+					<img src="hows-tine-logo.svg" alt="hows.tine logo" width={40} />
+				</a>
 			</div>
 			<div className="md:flex gap-8 font-semibold hidden">
-				<a href="#">Experience</a>
-				<a href="#">About Me</a>
-				<a href="#">Projects</a>
-				<a href="#">Skills</a>
-				<a href="#">Contact Me</a>
+				<a className="hover:underline" href="#experiences">
+					Experience
+				</a>
+				<a className="hover:underline" href="#me">
+					About Me
+				</a>
+				<a className="hover:underline" href="#projects">
+					Projects
+				</a>
+				<a className="hover:underline" href="#contact">
+					Contact Me
+				</a>
 			</div>
 			{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
 			<div
@@ -28,7 +37,7 @@ function Navbar(props: NavbarProps) {
 				<GiHamburgerMenu className="scale-125 cursor-pointer" />
 			</div>
 			<div className="md:block hidden">
-				<DownloadButton text="Resume" />
+				<DownloadButton link="justine_castaneda_resume.pdf" text="Resume" />
 			</div>
 		</div>
 	);
