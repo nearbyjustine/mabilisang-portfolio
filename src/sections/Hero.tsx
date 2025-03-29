@@ -23,7 +23,7 @@ function Hero() {
 					together! 🚀
 				</p>
 			</div>
-			<div className="md:w-1/2 max-w-[1500px]">
+			<div className="xl:w-2/5 md:w-1/2 max-w-[1500px]">
 				<img
 					className="2xl:w-[2000px] w-full"
 					src="kid.svg"
