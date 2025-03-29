@@ -3,6 +3,7 @@ version: "1.0"
 services:
   prod:
     container_name: mabilisang-portfolio-prod
+    env_file: ".env"
     build:
       context: .
       dockerfile: Dockerfile-prod
