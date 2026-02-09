@@ -5,7 +5,7 @@ export type NavbarProps = {
 };
 
 export type CardProps = {
-	id: string;
+	id: number;
 	job: string;
 	date: string;
 	details: string;

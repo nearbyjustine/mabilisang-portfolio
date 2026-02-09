@@ -6,7 +6,7 @@ function DownloadButton({ text, link }: { text: string; link?: string }) {
 		<div className="relative group">
 			<Button
 				asChild
-				className="bg-slate-950 text-base text-white hover:bg-slate-800 focus:bg-slate-800 cursor-pointer"
+				className="bg-teal-600 text-base text-white hover:bg-teal-700 focus:bg-teal-700 cursor-pointer shadow-lg shadow-teal-500/20"
 				variant={"default"}
 			>
 				<a href={link} target="_blank" rel="noreferrer">

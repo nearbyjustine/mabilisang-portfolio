@@ -9,6 +9,7 @@ import BurgerNavbar from "./sections/BurgerNavbar";
 import Experiences from "./sections/Experiences";
 import AboutMe from "./sections/AboutMe";
 import Projects from "./sections/Projects";
+import TechStack from "./sections/TechStack";
 import {
 	Popover,
 	PopoverContent,
@@ -16,10 +17,14 @@ import {
 } from "@/components/ui/popover";
 import ContactForm from "./components/ContactForm";
 import Footer from "./sections/Footer";
+import { usePortfolioTheme } from "@/hooks/usePortfolioTheme";
 
 function App() {
 	const [burgerClicked, setBurgerClicked] = useState(false);
 	const [inMobileView, setInMobileView] = useState(false);
+	const { getSectionBg, getSectionText, theme } = usePortfolioTheme();
+	const isLight = theme === "light" || theme === "hybrid";
+	
 	useEffect(() => {
 		const inMobile = () => {
 			// eslint-disable-next-line @typescript-eslint/no-unused-expressions
@@ -32,6 +37,7 @@ function App() {
 	const copyToClipboard = (text: string) => {
 		navigator.clipboard.writeText(text);
 	};
+	
 	return (
 		<>
 			<div className="relative">
@@ -49,8 +55,12 @@ function App() {
 					/>
 
 					<Hero />
-					<section className="flex 2xl:px-20 px-10 sm:items-start items-center mb-20 mt-10 md:mt-0">
-						{/* Socials */}
+					
+					{/* Socials */}
+					<section className={cn(
+						"flex 2xl:px-20 px-10 sm:items-start items-center pb-20 mt-10 md:mt-0 transition-colors duration-300",
+						getSectionBg("light")
+					)}>
 						<div className="flex gap-4 md:-mt-[20px]">
 							<SquareButton
 								link="https://www.linkedin.com/in/nearby-justine/"
@@ -71,23 +81,43 @@ function App() {
 								</PopoverContent>
 							</Popover>
 						</div>
-						<div className="md:block md:h-1 h-0.5 bg-black w-full md:ml-[120px] ml-5 -mt-1 sm:mt-0" />
+						<div className={cn(
+							"md:block md:h-1 h-0.5 w-full md:ml-[120px] ml-5 -mt-1 sm:mt-0",
+							isLight ? "bg-zinc-300" : "bg-zinc-700"
+						)} />
 					</section>
+					
 					<Experiences />
 					<AboutMe />
+					<TechStack />
 					<Projects />
+					
+					{/* Contact Section */}
 					<section
 						id="contact"
-						className="2xl:px-20 px-10 2xl:py-20 py-20 flex flex-col gap-8 items-center"
+						className={cn(
+							"py-24 px-6 md:px-12 lg:px-20 flex flex-col gap-8 items-center transition-colors duration-300",
+							getSectionBg("light"),
+							getSectionText("light")
+						)}
 					>
-						<div className="flex-col flex justify-center">
-							<h1 className="md:text-4xl text-2xl">Let's talk! 🥳</h1>
-							<p className="md:text-base text-small text-slate-800">
-								If you want me to build something for you.
+						<div className="max-w-7xl w-full mx-auto flex flex-col items-center gap-8">
+							<div className="flex items-center gap-2 mb-4">
+								<span className="h-px w-8 bg-teal-600/70" />
+								<span className="text-teal-600 font-medium tracking-wider text-sm uppercase">
+									Get In Touch
+								</span>
+							</div>
+							<h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-center">
+								Let's <span className="text-teal-600">Talk!</span> 🥳
+							</h2>
+							<p className="opacity-70 text-center max-w-md">
+								Have a project in mind? Let's build something impactful together.
 							</p>
+							<ContactForm className="md:w-[500px] w-full" />
 						</div>
-						<ContactForm className="md:w-[500px] w-full" />
 					</section>
+					
 					<Footer />
 				</div>
 			</div>
