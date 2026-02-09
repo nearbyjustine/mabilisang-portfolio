@@ -1,0 +1,10 @@
+# Robots.txt for hows-tine.com
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://hows-tine.com/sitemap.xml
+
+# Disallow dev/build artifacts
+Disallow: /node_modules/
+Disallow: /.git/

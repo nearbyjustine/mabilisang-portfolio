@@ -13,3 +13,4 @@ services:
       - /app/node_modules  # Prevents issues with dependencies
     environment:
       - NODE_ENV=development
+      - VITE_SITE_URL=http://localhost:5173

@@ -12,3 +12,4 @@ services:
     restart: always
     environment:
       - NODE_ENV=production
+      - VITE_SITE_URL=https://hows-tine.com
