@@ -74,7 +74,7 @@ function Navbar(props: NavbarProps) {
 			</div>
 
 			<div className="md:block hidden">
-				<DownloadButton link="justine_castaneda_resume.pdf" text="Resume" />
+				<DownloadButton link="justine_castaneda_resume.pdf?v=20260220" text="Resume" />
 			</div>
 		</nav>
 	);

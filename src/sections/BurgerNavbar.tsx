@@ -80,7 +80,7 @@ function BurgerNavbar({
 				</div>
 				{/* biome-ignore lint/a11y/useKeyWithClickEvents: <explanation> */}
 				<div onClick={() => setBurgerClicked((prev) => !prev)} className="mt-4">
-					<DownloadButton link="justine_castaneda_resume.pdf" text="Resume" />
+					<DownloadButton link="justine_castaneda_resume.pdf?v=20260220" text="Resume" />
 				</div>
 			</div>
 		</nav>
