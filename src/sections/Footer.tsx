@@ -6,7 +6,7 @@ function Footer() {
 	const isLight = theme === "light";
 	
 	return (
-		<section
+		<footer
 			className={cn(
 				"flex justify-between px-6 md:px-12 lg:px-20 py-8 items-center text-sm border-t transition-colors duration-300",
 				isLight 
@@ -23,8 +23,8 @@ function Footer() {
 					/>
 				</a>
 			</div>
-			<div>2025 © Justine Castañeda</div>
-		</section>
+			<div>2026 © Justine Castañeda</div>
+		</footer>
 	);
 }
 

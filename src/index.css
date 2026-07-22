@@ -118,3 +118,16 @@
     @apply bg-zinc-50 text-zinc-900 antialiased selection:bg-teal-600 selection:text-white;
   }
 }
+
+html { scroll-behavior: smooth; }
+.skip-link { position: fixed; left: 1rem; top: 1rem; z-index: 9999; transform: translateY(-180%); background: #0d9488; color: white; padding: .75rem 1rem; border-radius: .5rem; }
+.skip-link:focus { transform: translateY(0); }
+.reveal { animation: reveal-in .55s cubic-bezier(.22,1,.36,1) both; }
+@keyframes reveal-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+a, button, input, textarea { transition: color .2s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid #14b8a6; outline-offset: 3px; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}

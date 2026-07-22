@@ -41,16 +41,13 @@ function AboutMe() {
 					
 					<div className="space-y-4 opacity-70 text-lg leading-relaxed">
 						<p>
-							I'm a full-stack developer who loves creating seamless,
-							user-friendly digital experiences. From building enterprise web
-							applications to automating workflows with n8n and managing Docker
-							deployments on AWS, I thrive on solving problems and making
-							technology work smarter. Currently, I serve international clients
-							from Canada and Dubai, delivering scalable solutions with modern
-							tech stacks.
+							I&apos;m a lead software engineer who stays close to the code. I turn
+							ambiguous operational problems into dependable products—shaping the
+							architecture, breaking work into clear sprints, reviewing changes,
+							and helping developers ship with confidence.
 						</p>
 						<p>
-							Beyond tech, I'm a music director who finds joy in leading worship
+							Beyond tech, I&apos;m a music director who finds joy in leading worship
 							and mentoring musicians at our local church. Music, like
 							development, is about harmony and connection—and I'm passionate
 							about creating experiences that bring people together, whether

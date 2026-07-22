@@ -29,19 +29,19 @@ const techStack: TechCategory[] = [
 	{
 		name: "Frontend",
 		icon: Layout,
-		major: ["Nuxt 3", "Vue 3", "React", "TypeScript", "TailwindCSS", "NextJS"],
+		major: ["React 19", "TypeScript", "Vue 3", "Nuxt 3", "TailwindCSS", "Next.js"],
 		minor: ["Composition API", "Pinia", "State Management"],
 	},
 	{
 		name: "Backend",
 		icon: Server,
-		major: ["Laravel", "Node.js", "Express", "REST API Design", "Python", "PHP", "FastAPI", "NestJS"],
+		major: ["Python", "Firebase Cloud Functions", "Laravel", "Node.js", "Flask", "REST API Design"],
 		minor: ["Service Classes", "Queues", "Events", "Observers", "Caching", "RBAC"],
 	},
 	{
 		name: "Databases",
 		icon: Database,
-		major: ["PostgreSQL", "MySQL", "Supabase", "Redis"],
+		major: ["Firestore", "PostgreSQL", "MySQL", "Supabase", "Redis"],
 		minor: ["Query Optimization", "Schema Design"],
 	},
 	{
@@ -53,14 +53,14 @@ const techStack: TechCategory[] = [
 	{
 		name: "DevOps / Cloud",
 		icon: Settings,
-		major: ["Docker", "Cloudflare", "AWS", "GitHub Actions"],
+		major: ["Firebase", "Google Cloud Run", "Docker", "AWS", "GitHub Actions"],
 		minor: ["Traefik", "Portainer", "EC2", "S3", "RDS", "Jenkins", "Lando"],
 	},
 	{
 		name: "Automation & AI",
 		icon: Cpu,
-		major: ["n8n", "OpenAI", "Claude", "Gemini"],
-		minor: ["GitHub Copilot", "OpenRouter", "Workflow Automation"],
+		major: ["OpenAI", "Gemini", "n8n", "WebDriverAgent", "Pillow"],
+		minor: ["Classification Pipelines", "Workflow Automation", "Private API Integrations"],
 	},
 	{
 		name: "Other Tools",
@@ -71,10 +71,10 @@ const techStack: TechCategory[] = [
 ];
 
 const CORE_COMPETENCIES: readonly string[] = [
-	"Vue 3",
+	"Python",
 	"React",
 	"TypeScript",
-	"Laravel",
+	"Firebase",
 	"AWS",
 	"Docker",
 ] as const;

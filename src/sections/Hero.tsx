@@ -1,5 +1,6 @@
 import { usePortfolioTheme } from "@/hooks/usePortfolioTheme";
 import { cn } from "@/lib/utils";
+import { proofPoints } from "@/data/portfolio";
 
 function Hero() {
 	const { getSectionBg, getSectionText, theme } = usePortfolioTheme();
@@ -25,21 +26,21 @@ function Hero() {
 							Justine Castañeda
 						</p>
 						<h1 className="xl:text-6xl md:text-5xl text-4xl font-bold tracking-tight">
-							Full-Stack <br />
-							<span className="text-teal-600">Developer.</span>
+							Lead Software <br />
+							<span className="text-teal-600">Engineer.</span>
 						</h1>
 						<h2 className="xl:text-2xl md:text-xl text-lg text-teal-600/90 font-medium pt-2">
-							AI & Automation Specialist
+							AI Automation · Production Systems · Team Leadership
 						</h2>
 					</div>
 					<p className="opacity-70 md:text-lg text-base leading-relaxed max-w-xl">
-						Hi, I&apos;m Justine—a problem-solver, creative thinker, and
-						full-stack developer specializing in AI integrations and workflow
-						automation. I build scalable enterprise applications, implement CI/CD
-						pipelines, and deliver solutions for clients internationally (Canada,
-						Dubai, USA, Australia). From Laravel/Vue apps to Docker deployments
-						and n8n workflows—let&apos;s build something impactful together! 🚀
+						I turn complex automation into reliable production systems—and lead
+						teams that ship them. My work spans AI content pipelines, full-stack
+						products, operational dashboards, and multi-device iOS automation.
 					</p>
+					<div className="grid grid-cols-3 gap-3 pt-2" aria-label="Career highlights">
+						{proofPoints.map((point) => <div key={point.label}><strong className="block text-2xl text-teal-600">{point.value}</strong><span className="text-xs opacity-60">{point.label}</span></div>)}
+					</div>
 					
 					<div className="flex gap-4 pt-4">
 						<a href="#projects" className="px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg transition-colors shadow-lg shadow-teal-500/20">

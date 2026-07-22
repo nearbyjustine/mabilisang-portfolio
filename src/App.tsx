@@ -18,6 +18,7 @@ import {
 import ContactForm from "./components/ContactForm";
 import Footer from "./sections/Footer";
 import { usePortfolioTheme } from "@/hooks/usePortfolioTheme";
+import Reveal from "@/components/Reveal";
 
 function App() {
 	const [burgerClicked, setBurgerClicked] = useState(false);
@@ -40,6 +41,7 @@ function App() {
 	
 	return (
 		<>
+			<a href="#main-content" className="skip-link">Skip to main content</a>
 			<div className="relative">
 				<BurgerNavbar
 					burgerClicked={burgerClicked}
@@ -54,7 +56,8 @@ function App() {
 						setBurgerClicked={setBurgerClicked}
 					/>
 
-					<Hero />
+					<main id="main-content">
+					<Reveal><Hero /></Reveal>
 					
 					{/* Socials */}
 					<section className={cn(
@@ -87,10 +90,10 @@ function App() {
 						)} />
 					</section>
 					
-					<Experiences />
-					<AboutMe />
-					<TechStack />
-					<Projects />
+					<Reveal><Experiences /></Reveal>
+					<Reveal><AboutMe /></Reveal>
+					<Reveal><TechStack /></Reveal>
+					<Reveal><Projects /></Reveal>
 					
 					{/* Contact Section */}
 					<section
@@ -117,6 +120,7 @@ function App() {
 							<ContactForm className="md:w-[500px] w-full" />
 						</div>
 					</section>
+					</main>
 					
 					<Footer />
 				</div>
