@@ -1,29 +1,41 @@
 import { usePortfolioTheme } from "@/hooks/usePortfolioTheme";
 import { cn } from "@/lib/utils";
+import { container } from "@/lib/layout";
 
 function Footer() {
-	const { theme } = usePortfolioTheme();
-	const isLight = theme === "light";
-	
+	const { getSurface } = usePortfolioTheme();
+	const surface = getSurface("light");
+
 	return (
 		<footer
 			className={cn(
-				"flex justify-between px-6 md:px-12 lg:px-20 py-8 items-center text-sm border-t transition-colors duration-300",
-				isLight 
-					? "bg-zinc-100 text-zinc-500 border-zinc-200" 
-					: "bg-zinc-950 text-zinc-500 border-zinc-900"
+				"border-t transition-colors duration-300",
+				surface.rule,
+				surface.isLight ? "bg-zinc-100" : "bg-zinc-950",
 			)}
 		>
-			<div className="opacity-70 hover:opacity-100 transition-opacity">
-				<a href="/">
-					<img 
-						src={isLight ? "hows-tine-logo.svg" : "hows-tine-logo-white.svg"} 
-						alt="hows.tine logo" 
-						width={32} 
+			<div
+				className={cn(
+					container,
+					"flex flex-col items-start gap-6 py-10 text-sm sm:flex-row sm:items-center sm:justify-between",
+				)}
+			>
+				<a href="/" aria-label="Home" className="transition-opacity hover:opacity-70">
+					<img
+						src={
+							surface.isLight ? "hows-tine-logo.svg" : "hows-tine-logo-white.svg"
+						}
+						alt="hows.tine logo"
+						width={32}
+						height={32}
+						className="w-8"
 					/>
 				</a>
+				<p className={cn("font-mono text-xs tracking-wide", surface.faint)}>
+					Built with React, TypeScript, and Tailwind
+				</p>
+				<p className={surface.muted}>2026 © Justine Castañeda</p>
 			</div>
-			<div>2026 © Justine Castañeda</div>
 		</footer>
 	);
 }

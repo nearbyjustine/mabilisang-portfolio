@@ -1,70 +1,49 @@
-import type { LucideIcon } from "lucide-react";
-import {
-	Code2,
-	Database,
-	Layout,
-	Server,
-	Settings,
-	Terminal,
-	Cpu,
-} from "lucide-react";
-import { usePortfolioTheme } from "@/hooks/usePortfolioTheme";
+import SectionHeading from "@/components/SectionHeading";
+import { usePortfolioTheme, type Surface } from "@/hooks/usePortfolioTheme";
 import { cn } from "@/lib/utils";
+import { container, sectionPadding } from "@/lib/layout";
 
 // --- Types ---
 type TechCategory = {
 	name: string;
-	icon: LucideIcon;
 	major: string[];
 	minor: string[];
-};
-
-type CategoryCardProps = {
-	category: TechCategory;
-	isLight: boolean;
 };
 
 // --- Data ---
 const techStack: TechCategory[] = [
 	{
 		name: "Frontend",
-		icon: Layout,
 		major: ["React 19", "TypeScript", "Vue 3", "Nuxt 3", "TailwindCSS", "Next.js"],
 		minor: ["Composition API", "Pinia", "State Management"],
 	},
 	{
 		name: "Backend",
-		icon: Server,
 		major: ["Python", "Firebase Cloud Functions", "Laravel", "Node.js", "Flask", "REST API Design"],
 		minor: ["Service Classes", "Queues", "Events", "Observers", "Caching", "RBAC"],
 	},
 	{
 		name: "Databases",
-		icon: Database,
 		major: ["Firestore", "PostgreSQL", "MySQL", "Supabase", "Redis"],
 		minor: ["Query Optimization", "Schema Design"],
 	},
 	{
 		name: "Testing",
-		icon: Code2,
 		major: ["Vitest", "Playwright", "PHPUnit"],
 		minor: ["Unit/Integration", "E2E", "Feature Testing"],
 	},
 	{
 		name: "DevOps / Cloud",
-		icon: Settings,
 		major: ["Firebase", "Google Cloud Run", "Docker", "AWS", "GitHub Actions"],
 		minor: ["Traefik", "Portainer", "EC2", "S3", "RDS", "Jenkins", "Lando"],
 	},
 	{
 		name: "Automation & AI",
-		icon: Cpu,
 		major: ["OpenAI", "Gemini", "n8n", "WebDriverAgent", "Pillow"],
 		minor: ["Classification Pipelines", "Workflow Automation", "Private API Integrations"],
 	},
 	{
 		name: "Other Tools",
-		icon: Terminal,
 		major: ["Git", "Nginx", "Postman"],
 		minor: ["Jira"],
 	},
@@ -81,140 +60,116 @@ const CORE_COMPETENCIES: readonly string[] = [
 
 // --- Sub-Components ---
 
-function CategoryCard({ category, isLight }: CategoryCardProps) {
-	const Icon = category.icon;
-
+/** A run of terms separated by hairline slashes rather than boxed into pills. */
+function TermRun({
+	items,
+	surface,
+	className,
+	separatorClassName,
+}: {
+	items: readonly string[];
+	surface: Surface;
+	className?: string;
+	separatorClassName?: string;
+}) {
 	return (
-		<div className={cn(
-			"group flex flex-col h-full rounded-lg p-6 border transition-all duration-300",
-			isLight 
-				? "bg-white border-zinc-200 hover:border-teal-200 hover:shadow-lg"
-				: "bg-zinc-900/30 border-zinc-800 hover:border-zinc-600 hover:bg-zinc-900/60"
-		)}>
-			{/* Header */}
-			<div className="flex items-center gap-3 mb-6">
-				<div className={cn(
-					"p-2 rounded-md transition-colors",
-					isLight 
-						? "bg-zinc-100 text-zinc-500 group-hover:text-teal-600 group-hover:bg-teal-50"
-						: "bg-zinc-800/50 text-zinc-400 group-hover:text-zinc-100 group-hover:bg-zinc-700"
-				)}>
-					<Icon size={20} />
-				</div>
-				<h3 className={cn(
-					"text-lg font-medium tracking-tight",
-					isLight ? "text-zinc-900" : "text-zinc-200"
-				)}>
-					{category.name}
-				</h3>
-			</div>
-
-			{/* Skills Container */}
-			<div className="flex flex-col gap-4">
-				{/* Major Skills - Prominent */}
-				<div className="flex flex-wrap gap-2">
-					{category.major.map((tech) => (
-						<span
-							key={tech}
-							className={cn(
-								"px-2.5 py-1 text-xs font-medium rounded border",
-								isLight 
-									? "text-zinc-700 bg-zinc-100 border-zinc-200"
-									: "text-zinc-100 bg-zinc-800 border-zinc-700/50"
-							)}
-						>
-							{tech}
-						</span>
-					))}
-				</div>
-
-				{/* Separator if both exist */}
-				{category.major.length > 0 && category.minor.length > 0 && (
-					<div className={cn("h-px w-full", isLight ? "bg-zinc-200" : "bg-zinc-800/50")} />
-				)}
-
-				{/* Minor Skills - Subtle */}
-				<div className="flex flex-wrap gap-x-3 gap-y-1.5">
-					{category.minor.map((tech) => (
-						<span
-							key={tech}
-							className={cn(
-								"text-xs transition-colors cursor-default",
-								isLight 
-									? "text-zinc-500 hover:text-zinc-700"
-									: "text-zinc-500 hover:text-zinc-300"
-							)}
-						>
-							{tech}
-						</span>
-					))}
-				</div>
-			</div>
-		</div>
+		<ul className={cn("flex flex-wrap gap-x-3 gap-y-1", className)}>
+			{items.map((item, index) => (
+				<li
+					key={item}
+					className={cn(
+						index < items.length - 1 && "after:ml-3 after:content-['/']",
+						separatorClassName ??
+							(surface.isLight ? "after:text-zinc-300" : "after:text-zinc-700"),
+					)}
+				>
+					{item}
+				</li>
+			))}
+		</ul>
 	);
 }
 
 // --- Main Component ---
 
 export default function TechStack() {
-	const { getSectionBg, getSectionText, theme } = usePortfolioTheme();
-	const isLight = theme === "light";
-	
+	const { getSurface } = usePortfolioTheme();
+	const surface = getSurface("dark");
+
 	return (
 		<section
 			id="technologies"
+			aria-labelledby="technologies-title"
 			className={cn(
-				"py-24 px-6 md:px-12 lg:px-20 transition-colors duration-300",
-				getSectionBg("dark"),
-				getSectionText("dark")
+				"transition-colors duration-300",
+				sectionPadding,
+				surface.bg,
+				surface.text,
 			)}
 		>
-			<div className="max-w-7xl mx-auto">
-				{/* Section Header */}
-				<div className="mb-16 md:mb-20 space-y-4 max-w-2xl">
-					<div className="flex items-center gap-2">
-						<span className="h-px w-8 bg-teal-500/70" />
-						<span className="text-teal-600 font-medium tracking-wider text-sm uppercase">
-							Expertise
-						</span>
-					</div>
-					<h2 className="text-4xl md:text-5xl font-semibold tracking-tight">
-						Technologies & <br className="hidden md:block" />
-						<span className="opacity-50">Technical Skills.</span>
-					</h2>
-					<p className="opacity-70 text-lg leading-relaxed pt-2">
-						A comprehensive overview of the tools, languages, and frameworks I
-						use to build scalable digital solutions.
-					</p>
-				</div>
+			<div className={container}>
+				<SectionHeading
+					id="technologies-title"
+					title="Technical Stack"
+					deck="What I actually reach for, grouped by where it sits in a system. The first line of each row is the working set; the second is the supporting detail."
+					surface={surface}
+					className="mb-4 md:mb-8"
+				/>
 
-				{/* Grid Layout */}
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+				<dl>
 					{techStack.map((category) => (
-						<CategoryCard key={category.name} category={category} isLight={isLight} />
-					))}
-				</div>
-
-				{/* Core Competencies / Highlight Bar */}
-				<div className={cn(
-					"mt-20 pt-10 border-t",
-					isLight ? "border-zinc-200" : "border-zinc-900"
-				)}>
-					<div className="flex flex-col md:flex-row items-center justify-between gap-6">
-						<span className="text-sm font-medium opacity-50 uppercase tracking-widest">
-							Core Competencies
-						</span>
-						<div className="flex flex-wrap justify-center gap-6 md:gap-8 opacity-80">
-							{CORE_COMPETENCIES.map((item) => (
-								<span
-									key={item}
-									className="font-semibold text-lg hover:text-teal-600 transition-colors cursor-default"
-								>
-									{item}
-								</span>
-							))}
+						<div
+							key={category.name}
+							className={cn(
+								"grid gap-x-10 gap-y-3 border-t py-7 lg:grid-cols-12",
+								surface.rule,
+							)}
+						>
+							<dt
+								className={cn(
+									"font-mono text-[11px] tracking-[0.18em] uppercase lg:col-span-3 lg:pt-1",
+									surface.faint,
+								)}
+							>
+								{category.name}
+							</dt>
+							<dd className="lg:col-span-9">
+								<TermRun
+									items={category.major}
+									surface={surface}
+									className={cn("text-base md:text-lg", surface.text)}
+								/>
+								{category.minor.length > 0 ? (
+									<TermRun
+										items={category.minor}
+										surface={surface}
+										className={cn("mt-3 text-sm", surface.faint)}
+									/>
+								) : null}
+							</dd>
 						</div>
-					</div>
+					))}
+				</dl>
+
+				<div
+					className={cn(
+						"grid gap-x-10 gap-y-3 border-t py-7 lg:grid-cols-12",
+						surface.rule,
+					)}
+				>
+					<p
+						className={cn(
+							"font-mono text-[11px] tracking-[0.18em] uppercase lg:col-span-3 lg:pt-1",
+							surface.accent,
+						)}
+					>
+						Most days
+					</p>
+					<TermRun
+						items={CORE_COMPETENCIES}
+						surface={surface}
+						className={cn("text-lg font-medium lg:col-span-9", surface.text)}
+					/>
 				</div>
 			</div>
 		</section>

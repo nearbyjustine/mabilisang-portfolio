@@ -1,10 +1,24 @@
-import type { ProjectProps } from "@/types/props";
+import type { PipelineStage, ProjectProps } from "@/types/props";
 
 export const proofPoints = [
 	{ value: "4", label: "developers led" },
 	{ value: "3", label: "concurrent workstreams" },
 	{ value: "35k+", label: "posts in the AI corpus" },
 ] as const;
+
+/**
+ * The production pipeline behind the current lead role, stage by stage.
+ * Every stage below is drawn from work described in `experiences` and
+ * `projects`; the hero renders it as an authored schematic, not an image.
+ */
+export const pipelineStages: PipelineStage[] = [
+	{ name: "Discover", detail: "proven content" },
+	{ name: "Classify", detail: "35k+ post corpus" },
+	{ name: "Transform", detail: "AI remix strategies" },
+	{ name: "Render", detail: "publish-ready carousels" },
+	{ name: "Publish", detail: "iOS device fleet" },
+	{ name: "Observe", detail: "attribution + telemetry" },
+];
 
 export const experiences = [
 	{ id: 0, job: "Lead Software Engineer", date: "May 2026 — Present", details: "Promoted after two months to lead four developers across three concurrent workstreams. I own sprint planning, architecture decisions, code review, and delivery for AI content automation, creator operations, and observability systems.", logo: "hows-tine-logo.svg", companyName: "AI Content Automation Startup", workSetup: "Remote", companyWebsite: "https://howstine.vercel.app" },
@@ -15,9 +29,48 @@ export const experiences = [
 ];
 
 export const projects: ProjectProps[] = [
-	{ id: 0, imgSrc: "projects/centify.png", imgAlt: "Abstract dashboard preview for an anonymized automation platform", link: "#contact", title: "AI Content Automation Platform", description: "Led architecture and delivery of an end-to-end system that discovers proven content, classifies a 35k+ post corpus, applies AI transformation strategies, renders publish-ready carousels, and routes work to automated iOS devices—with attribution and observability built in." },
-	{ id: 1, imgSrc: "projects/jcag-connect.png", imgAlt: "Dashboard preview representing creator operations", link: "#contact", title: "Creator Operations Platform", description: "Led creator and executive dashboards, post-to-creator attribution, IG-handle mapping, review workflows, and an automated payout pipeline. Product details are anonymized to protect client operations." },
-	{ id: 2, imgSrc: "projects/themcx.png", imgAlt: "Operational interface representing an automated publishing fleet", link: "#contact", title: "Automated iOS Publishing Fleet", description: "Built multi-device WebDriverAgent tooling for physical iPhones, publishing orchestration, health telemetry, and recovery workflows—turning fragile device automation into an observable production system." },
-	{ id: 3, imgSrc: "projects/centhris.png", imgAlt: "CentHRIS enterprise application dashboard", link: "https://app.centhris.com/", title: "CentHRIS / Finance Modules", description: "Implemented payroll engines, tax rules, finance workflows, scheduling logic, Core HR features, reusable UI modules, and automated tests across a Laravel, Nuxt, Vue, PostgreSQL, Docker, and n8n stack." },
-	{ id: 4, imgSrc: "projects/e-dukado.png", imgAlt: "e-Dukado learning management system", link: "https://edukado-lms.vercel.app/", title: "e-Dukado LMS", description: "Spearheaded a Next.js and Supabase learning platform for a public elementary school, using student and educator feedback to guide iterative UX improvements." },
+	{
+		id: 0,
+		title: "AI Content Automation Platform",
+		role: "Lead engineer — architecture and delivery",
+		description:
+			"Led architecture and delivery of an end-to-end system that discovers proven content, classifies a 35k+ post corpus, applies AI transformation strategies, renders publish-ready carousels, and routes work to automated iOS devices—with attribution and observability built in.",
+		outcome:
+			"A 35k+ post corpus moves from discovery to published carousel without a hand-off, and every published post stays traceable.",
+		stack: ["Python", "Firebase", "Pillow", "iOS automation"],
+		link: "#contact",
+	},
+	{
+		id: 1,
+		title: "Creator Operations Platform",
+		role: "Lead engineer — creator and executive dashboards",
+		description:
+			"Led creator and executive dashboards, post-to-creator attribution, IG-handle mapping, review workflows, and an automated payout pipeline. Product details are anonymized to protect client operations.",
+		outcome:
+			"Review and payout work that used to be manual now runs as an auditable pipeline, with attribution resolved back to the creator.",
+		stack: ["React", "TypeScript", "Firebase"],
+		link: "#contact",
+	},
+	{
+		id: 2,
+		title: "Automated iOS Publishing Fleet",
+		role: "Engineer — device automation and reliability",
+		description:
+			"Built multi-device WebDriverAgent tooling for physical iPhones, publishing orchestration, health telemetry, and recovery workflows—turning fragile device automation into an observable production system.",
+		outcome:
+			"A fleet of physical iPhones publishes on schedule, reports its own health, and recovers from failure instead of stalling silently.",
+		stack: ["Python", "WebDriverAgent", "iOS devices"],
+		link: "#contact",
+	},
+	{
+		id: 3,
+		title: "CentHRIS / Finance Modules",
+		role: "Software developer — payroll, finance, and Core HR",
+		description:
+			"Implemented payroll engines, tax rules, finance workflows, scheduling logic, Core HR features, reusable UI modules, and automated tests across a Laravel, Nuxt, Vue, PostgreSQL, Docker, and n8n stack.",
+		outcome:
+			"Payroll, tax, and scheduling rules ship behind automated tests, on reusable modules the wider team builds on.",
+		stack: ["Laravel", "Nuxt", "Vue", "PostgreSQL", "Docker", "n8n"],
+		link: "https://app.centhris.com/",
+	},
 ];
