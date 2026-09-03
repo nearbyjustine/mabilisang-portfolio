@@ -1,73 +1,106 @@
 import { usePortfolioTheme } from "@/hooks/usePortfolioTheme";
 import { cn } from "@/lib/utils";
+import { container } from "@/lib/layout";
 import { proofPoints } from "@/data/portfolio";
+import SystemsMap from "@/components/SystemsMap";
 
 function Hero() {
-	const { getSectionBg, getSectionText, theme } = usePortfolioTheme();
-	const isLight = theme === "light" || theme === "hybrid";
-	
+	const { getSurface } = usePortfolioTheme();
+	const surface = getSurface("light");
+
 	return (
 		<section
 			id="hero"
-			className={cn(
-				"w-full transition-colors duration-300",
-				getSectionBg("light")
-			)}
+			aria-labelledby="hero-title"
+			className={cn("w-full transition-colors duration-300", surface.bg, surface.text)}
 		>
 			<div
 				className={cn(
-					"w-full md:flex-row md:gap-12 gap-8 flex-col-reverse flex justify-between py-24 px-6 md:px-12 lg:px-20 items-center max-w-7xl mx-auto",
-					getSectionText("light")
+					container,
+					"grid items-center gap-14 pt-16 pb-24 md:pt-24 md:pb-32 lg:grid-cols-12 lg:gap-12",
 				)}
 			>
-				<div className="md:space-y-8 space-y-4 md:w-1/2">
-					<div className="space-y-2">
-						<p className="text-teal-600 font-medium tracking-wider text-sm uppercase mb-2">
+				<div className="lg:col-span-7">
+					<h1 id="hero-title" className="font-semibold">
+						<span className="block text-[clamp(2.5rem,7vw,4.5rem)] leading-[0.95]">
 							Justine Castañeda
-						</p>
-						<h1 className="xl:text-6xl md:text-5xl text-4xl font-bold tracking-tight">
-							Lead Software <br />
-							<span className="text-teal-600">Engineer.</span>
-						</h1>
-						<h2 className="xl:text-2xl md:text-xl text-lg text-teal-600/90 font-medium pt-2">
-							AI Automation · Production Systems · Team Leadership
-						</h2>
-					</div>
-					<p className="opacity-70 md:text-lg text-base leading-relaxed max-w-xl">
-						I turn complex automation into reliable production systems—and lead
-						teams that ship them. My work spans AI content pipelines, full-stack
-						products, operational dashboards, and multi-device iOS automation.
-					</p>
-					<div className="grid grid-cols-3 gap-3 pt-2" aria-label="Career highlights">
-						{proofPoints.map((point) => <div key={point.label}><strong className="block text-2xl text-teal-600">{point.value}</strong><span className="text-xs opacity-60">{point.label}</span></div>)}
-					</div>
-					
-					<div className="flex gap-4 pt-4">
-						<a href="#projects" className="px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg transition-colors shadow-lg shadow-teal-500/20">
-							View Projects
-						</a>
-						<a 
-							href="#contact" 
+						</span>
+						<span
 							className={cn(
-								"px-6 py-3 font-medium rounded-lg transition-colors border shadow-sm",
-								isLight 
-									? "bg-white/80 hover:bg-white text-zinc-700 border-zinc-200"
-									: "bg-zinc-800 hover:bg-zinc-700 text-zinc-200 border-zinc-700"
+								"mt-3 block text-[clamp(1.25rem,2.6vw,1.9rem)] leading-tight font-medium",
+								surface.accent,
 							)}
 						>
-							Contact Me
+							Lead Software Engineer
+						</span>
+					</h1>
+
+					<p
+						className={cn(
+							"mt-7 max-w-[58ch] text-base leading-relaxed md:text-lg",
+							surface.muted,
+						)}
+					>
+						I turn complex automation into reliable production systems—and lead
+						the teams that ship them. My work spans AI content pipelines,
+						full-stack products, operational dashboards, and multi-device iOS
+						automation.
+					</p>
+
+					<ul
+						className={cn(
+							"mt-9 flex flex-wrap items-baseline gap-x-3 gap-y-2 border-t pt-5 text-sm",
+							surface.rule,
+							surface.muted,
+						)}
+					>
+						{proofPoints.map((point, index) => (
+							<li
+								key={point.label}
+								className={cn(
+									"flex items-baseline gap-2",
+									index < proofPoints.length - 1 &&
+										"after:ml-3 after:content-['/']",
+									surface.isLight ? "after:text-zinc-300" : "after:text-zinc-700",
+								)}
+							>
+								<span
+									className={cn(
+										"font-mono text-base tabular-nums",
+										surface.accent,
+									)}
+								>
+									{point.value}
+								</span>
+								{point.label}
+							</li>
+						))}
+					</ul>
+
+					<div className="mt-9 flex flex-wrap items-center gap-3">
+						<a
+							href="#projects"
+							className="rounded-lg bg-teal-600 px-6 py-3 font-medium text-white shadow-lg shadow-teal-600/20 transition-colors hover:bg-teal-700"
+						>
+							See the work
+						</a>
+						<a
+							href="#contact"
+							className={cn(
+								"rounded-lg border px-6 py-3 font-medium transition-colors",
+								surface.rule,
+								surface.isLight
+									? "bg-white text-zinc-800 hover:border-zinc-300 hover:bg-zinc-100"
+									: "bg-zinc-900 text-zinc-200 hover:border-zinc-700 hover:bg-zinc-800",
+							)}
+						>
+							Get in touch
 						</a>
 					</div>
 				</div>
-				<div className="xl:w-2/5 md:w-1/2 w-full flex justify-center">
-					<img
-						className={cn(
-							"w-full max-w-[600px] drop-shadow-xl transition-all duration-300",
-							!isLight && "invert opacity-90"
-						)}
-						src="kid.svg"
-						alt="Child thinking, creative"
-					/>
+
+				<div className="lg:col-span-5 lg:justify-self-end">
+					<SystemsMap surface={surface} />
 				</div>
 			</div>
 		</section>

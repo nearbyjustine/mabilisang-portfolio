@@ -36,6 +36,13 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  /* Identity ------------------------------------------------------------- */
+  --signal: #0d9488;      /* teal-600 — accent on light surfaces */
+  --signal-bright: #2dd4bf; /* teal-400 — accent on dark surfaces */
+  --focus: #14b8a6;       /* one focus colour, legible on both tones */
+  --scrollbar-thumb: #d4d4d8;
+  --scrollbar-thumb-hover: #a1a1aa;
 }
 
 .dark {
@@ -70,6 +77,16 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+
+  --scrollbar-thumb: #3f3f46;
+  --scrollbar-thumb-hover: #52525b;
+}
+
+@theme {
+  --font-sans: "Archivo", ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, "SF Mono",
+    Menlo, Consolas, monospace;
 }
 
 @theme inline {
@@ -115,19 +132,159 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-zinc-50 text-zinc-900 antialiased selection:bg-teal-600 selection:text-white;
+    @apply bg-zinc-50 text-zinc-900 antialiased;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+  html.dark body {
+    @apply bg-zinc-950 text-zinc-200;
+  }
+  /* Headings hold their tracking at display sizes. */
+  h1, h2, h3 {
+    letter-spacing: -0.025em;
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
   }
 }
 
-html { scroll-behavior: smooth; }
-.skip-link { position: fixed; left: 1rem; top: 1rem; z-index: 9999; transform: translateY(-180%); background: #0d9488; color: white; padding: .75rem 1rem; border-radius: .5rem; }
+/* --------------------------------------------------------------------------
+   Browser surfaces — the parts we did not draw still belong to the design.
+   -------------------------------------------------------------------------- */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+}
+html.light, html.hybrid { color-scheme: light; }
+html.dark { color-scheme: dark; }
+
+::selection {
+  background: var(--signal);
+  color: #fff;
+}
+
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  background-clip: content-box;
+  border: 3px solid transparent;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--scrollbar-thumb-hover); background-clip: content-box; }
+
+input, textarea, select { caret-color: var(--signal); }
+html.dark input, html.dark textarea, html.dark select { caret-color: var(--signal-bright); }
+
+::marker { color: var(--signal); }
+
+a { text-underline-offset: 0.22em; text-decoration-thickness: from-font; }
+
+:where(a, button, [role="button"], input, textarea, select, summary):focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px color-mix(in oklab, var(--focus) 18%, transparent);
+}
+
+.skip-link {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+  z-index: 9999;
+  transform: translateY(-200%);
+  background: var(--signal);
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+}
 .skip-link:focus { transform: translateY(0); }
-.reveal { animation: reveal-in .55s cubic-bezier(.22,1,.36,1) both; }
-@keyframes reveal-in { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
-a, button, input, textarea { transition: color .2s ease, background-color .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
-a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible { outline: 3px solid #14b8a6; outline-offset: 3px; }
+
+/* --------------------------------------------------------------------------
+   Motion — content reveals as it enters, from an already-visible default.
+   -------------------------------------------------------------------------- */
+
+.reveal[data-revealed="false"] {
+  opacity: 0;
+  transform: translateY(1.25rem);
+}
+.reveal[data-revealed="true"] {
+  animation: reveal-in 0.75s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes reveal-in {
+  from { opacity: 0; transform: translateY(1.25rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --------------------------------------------------------------------------
+   Systems map — the hero schematic. A single signal sweeps the rail and each
+   stage lights as it passes. This is the page's one authored motion moment.
+   -------------------------------------------------------------------------- */
+
+.systems-map {
+  --sweep: 7s;
+}
+
+.systems-map__pulse {
+  position: absolute;
+  left: 0;
+  width: 1px;
+  height: 14%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in oklab, var(--signal-bright) 45%, transparent),
+    var(--signal-bright)
+  );
+  animation: signal-sweep var(--sweep) linear infinite;
+}
+
+@keyframes signal-sweep {
+  0%   { top: -14%; opacity: 0; }
+  5%   { opacity: 1; }
+  70%  { top: 100%; opacity: 1; }
+  78%  { top: 100%; opacity: 0; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.systems-map__node {
+  animation: node-flash var(--sweep) linear infinite;
+}
+
+@keyframes node-flash {
+  0%, 100% {
+    background-color: currentColor;
+    box-shadow: none;
+    transform: scale(1);
+  }
+  1% {
+    background-color: var(--signal-bright);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--signal-bright) 22%, transparent);
+    transform: scale(1.45);
+  }
+  9% {
+    background-color: currentColor;
+    box-shadow: none;
+    transform: scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-  .reveal { opacity: 1; transform: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .reveal[data-revealed] {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+  .systems-map__pulse { display: none; }
+  .systems-map__node { animation: none !important; }
 }

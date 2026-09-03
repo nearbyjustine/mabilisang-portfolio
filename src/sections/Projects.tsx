@@ -1,38 +1,42 @@
-import Project from "@/components/Project";
+import CaseStudy from "@/components/CaseStudy";
+import SectionHeading from "@/components/SectionHeading";
 import { usePortfolioTheme } from "@/hooks/usePortfolioTheme";
 import { cn } from "@/lib/utils";
+import { container, sectionPadding } from "@/lib/layout";
 import { projects } from "@/data/portfolio";
 
-
 function Projects() {
-	const { getSectionBg, getSectionText, theme } = usePortfolioTheme();
-	const isLight = theme === "light";
-	
+	const { getSurface } = usePortfolioTheme();
+	const surface = getSurface("dark");
+
 	return (
 		<section
 			id="projects"
+			aria-labelledby="projects-title"
 			className={cn(
-				"flex flex-col justify-between py-24 px-6 md:px-12 lg:px-20 items-center transition-colors duration-300",
-				getSectionBg("dark"),
-				getSectionText("dark")
+				"transition-colors duration-300",
+				sectionPadding,
+				surface.bg,
+				surface.text,
 			)}
 		>
-			<div className="max-w-7xl w-full mx-auto">
-				<div className="flex flex-col items-center md:items-start mb-16 md:mb-24 space-y-4">
-					<div className="flex items-center gap-2">
-						<span className="h-px w-8 bg-teal-500/70" />
-						<span className="text-teal-600 font-medium tracking-wider text-sm uppercase">
-							Portfolio
-						</span>
-					</div>
-					<h2 className="text-4xl md:text-5xl font-semibold tracking-tight">
-						Featured <span className="opacity-50">Projects.</span>
-					</h2>
-				</div>
-				
-				<div className="flex flex-col gap-20 md:gap-32">
-					{projects.map((project) => (
-						<Project key={project.id} {...project} isLight={isLight} />
+			<div className={container}>
+				<SectionHeading
+					id="projects-title"
+					title="Featured Projects"
+					deck="Six systems I led or built end to end — including an open-source multi-agent orchestrator you can run yourself. Client work is anonymized where the operation depends on it, so a few of these open a conversation rather than a live site."
+					surface={surface}
+					className="mb-4 md:mb-8"
+				/>
+
+				<div>
+					{projects.map((project, index) => (
+						<CaseStudy
+							key={project.id}
+							project={project}
+							index={index}
+							surface={surface}
+						/>
 					))}
 				</div>
 			</div>
